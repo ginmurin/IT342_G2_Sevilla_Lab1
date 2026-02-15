@@ -10,6 +10,8 @@ public record LoginResponse(
     String email,
     String firstName,
     String lastName,
+    String role,
+    Boolean isActive,
     LocalDateTime createdAt,
     LocalDateTime updatedAt,
     LocalDateTime lastLogin

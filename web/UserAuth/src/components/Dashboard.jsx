@@ -11,6 +11,12 @@ export function Dashboard() {
     navigate('/');
   };
 
+  const getAccessLevel = () => {
+    if (user?.role === 'ADMIN') return '100%';
+    if (user?.role === 'USER') return '75%';
+    return '50%';
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow">
@@ -102,7 +108,7 @@ export function Dashboard() {
                 <p className="text-sm text-blue-800">User Role</p>
               </div>
               <div>
-                <p className="text-2xl text-blue-600">100%</p>
+                <p className="text-2xl text-blue-600">{getAccessLevel()}</p>
                 <p className="text-sm text-blue-800">Access Level</p>
               </div>
             </div>

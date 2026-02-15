@@ -75,6 +75,8 @@ export function AuthProvider({ children }) {
           email: data.email,
           firstName: data.firstName,
           lastName: data.lastName,
+          role: data.role,
+          isActive: data.isActive,
           createdAt: data.createdAt,
           updatedAt: data.updatedAt,
           lastLogin: data.lastLogin
