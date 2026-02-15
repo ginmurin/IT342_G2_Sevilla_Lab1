@@ -168,9 +168,11 @@ export function ViewProfile() {
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-50 rounded-full p-3">
-                    <User className="w-6 h-6 text-blue-600" />
-                  </div>
+                  {!isEditing && (
+                    <div className="bg-blue-50 rounded-full p-3">
+                      <User className="w-6 h-6 text-blue-600" />
+                    </div>
+                  )}
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">Username</p>
                     {isEditing ? (
@@ -187,9 +189,11 @@ export function ViewProfile() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-green-50 rounded-full p-3">
-                    <Mail className="w-6 h-6 text-green-600" />
-                  </div>
+                  {!isEditing && (
+                    <div className="bg-green-50 rounded-full p-3">
+                      <Mail className="w-6 h-6 text-green-600" />
+                    </div>
+                  )}
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">Email Address</p>
                     {isEditing ? (
@@ -315,11 +319,6 @@ export function ViewProfile() {
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <h4 className="font-medium text-gray-900 mb-4">Account Details</h4>
                 <div className="space-y-3 text-sm">
-                  <div className="flex items-center space-x-2">
-                    <Clock className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">User ID:</span>
-                    <span className="text-gray-900">{user?.userId}</span>
-                  </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-4 h-4 text-gray-400" />
                     <span className="text-gray-600">Created:</span>

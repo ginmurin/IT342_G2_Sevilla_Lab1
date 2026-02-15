@@ -1,5 +1,7 @@
 package com.sevilla.userauth.dto;
 
+import java.time.LocalDateTime;
+
 public record UserProfileDTO(
     Integer userId,
     String username,
@@ -7,5 +9,8 @@ public record UserProfileDTO(
     String firstName,
     String lastName,
     String role,
-    Boolean isActive
+    Boolean isActive,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt,
+    LocalDateTime lastLogin
 ) {}
