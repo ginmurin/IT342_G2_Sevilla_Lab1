@@ -78,10 +78,3 @@ export function ProtectedPage() {
     </div>
   );
 }
-            This area contains sensitive information that requires authentication.
-          </p>
-        </div>
-      </main>
-    </div>
-  );
-}
