@@ -100,7 +100,24 @@ public class UserService {
      * Logout user and invalidate session
      */
     public boolean logout(String sessionToken) {
-        return sessions.remove(sessionToken) != null;
+        // Get session info
+        SessionInfo sessionInfo = sessions.get(sessionToken);
+        if (sessionInfo == null) {
+            return false;
+        }
+        
+        // Remove session
+        sessions.remove(sessionToken);
+        
+        // Set user as inactive
+        Optional<User> userOpt = userRepository.findById(sessionInfo.userId());
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            user.setIsActive(false);
+            userRepository.save(user);
+        }
+        
+        return true;
     }
 
     /**
