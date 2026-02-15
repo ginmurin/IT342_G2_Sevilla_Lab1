@@ -9,25 +9,29 @@ export function Register() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
+    setLoading(true);
 
     if (!name.trim() || !email.trim() || !password) {
       setError('All fields are required');
+      setLoading(false);
       return;
     }
 
     if (password.length < 6) {
       setError('Password must be at least 6 characters');
+      setLoading(false);
       return;
     }
 
-    const registrationSuccess = register(email, password, name);
+    const registrationSuccess = await register(email, password, name);
 
     if (registrationSuccess) {
       setSuccess(true);
@@ -36,8 +40,9 @@ export function Register() {
       setPassword('');
       setTimeout(() => navigate('/login'), 1500);
     } else {
-      setError('Email already exists');
+      setError('Registration failed. Email may already exist.');
     }
+    setLoading(false);
   };
 
   return (
@@ -66,7 +71,7 @@ export function Register() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="John Doe"
-              disabled={success}
+              disabled={success || loading}
               className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
             />
           </div>
@@ -79,7 +84,7 @@ export function Register() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              disabled={success}
+              disabled={success || loading}
               className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
             />
           </div>
@@ -92,7 +97,7 @@ export function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="........"
-              disabled={success}
+              disabled={success || loading}
               className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
             />
             <p className="mt-2 text-base text-slate-500">Must be at least 6 characters</p>
@@ -104,10 +109,10 @@ export function Register() {
 
           <button
             type="submit"
-            disabled={success}
+            disabled={success || loading}
             className="w-full rounded-xl bg-blue-600 px-4 py-3 text-lg font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            Register
+            {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
 

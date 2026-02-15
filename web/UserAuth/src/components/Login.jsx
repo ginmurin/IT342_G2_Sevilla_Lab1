@@ -7,25 +7,29 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
     if (!email || !password) {
       setError('Email and password are required');
+      setLoading(false);
       return;
     }
 
-    const success = login(email, password);
+    const success = await login(email, password);
 
     if (success) {
       navigate('/dashboard');
     } else {
       setError('Invalid email or password');
     }
+    setLoading(false);
   };
 
   return (
@@ -48,7 +52,8 @@ export function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              disabled={loading}
+              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
             />
           </div>
 
@@ -60,7 +65,8 @@ export function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="........"
-              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              disabled={loading}
+              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
             />
           </div>
 
@@ -70,9 +76,10 @@ export function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-600 px-4 py-3 text-lg font-medium text-white transition hover:bg-blue-700"
+            disabled={loading}
+            className="w-full rounded-xl bg-blue-600 px-4 py-3 text-lg font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            Sign in
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
 
