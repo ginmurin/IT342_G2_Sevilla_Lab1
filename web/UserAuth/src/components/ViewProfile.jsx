@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { LogOut, Home, Shield, User, Mail, Calendar, UserCheck, Clock, Edit2, Save, X, Lock } from 'lucide-react';
@@ -6,6 +6,7 @@ import { LogOut, Home, Shield, User, Mail, Calendar, UserCheck, Clock, Edit2, Sa
 export function ViewProfile() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [profileData, setProfileData] = useState(user);
   const [isEditing, setIsEditing] = useState(false);
   const [editUsername, setEditUsername] = useState(user?.username || '');
   const [editEmail, setEditEmail] = useState(user?.email || '');
@@ -14,6 +15,33 @@ export function ViewProfile() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Fetch complete profile data with timestamps on mount
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      if (!user?.userId) return;
+      
+      try {
+        const API_URL = `http://${window.location.hostname}:8080/api`;
+        const sessionToken = localStorage.getItem('sessionToken');
+        
+        const response = await fetch(`${API_URL}/user/profile/${user.userId}`, {
+          headers: {
+            'Authorization': `Bearer ${sessionToken}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setProfileData(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch profile data:', err);
+      }
+    };
+    
+    fetchProfileData();
+  }, [user?.userId]);
 
   const handleLogout = () => {
     logout();
@@ -133,8 +161,8 @@ export function ViewProfile() {
                   <User className="w-16 h-16 text-blue-600" />
                 </div>
                 <div className="text-white">
-                  <h2 className="text-3xl mb-1">{user?.firstName} {user?.lastName}</h2>
-                  <p className="text-blue-100">@{user?.username}</p>
+                  <h2 className="text-3xl mb-1">{profileData?.firstName} {profileData?.lastName}</h2>
+                  <p className="text-blue-100">@{profileData?.username}</p>
                 </div>
               </div>
             </div>
@@ -183,7 +211,7 @@ export function ViewProfile() {
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     ) : (
-                      <p className="text-lg text-gray-900">@{user?.username}</p>
+                      <p className="text-lg text-gray-900">@{profileData?.username}</p>
                     )}
                   </div>
                 </div>
@@ -204,7 +232,7 @@ export function ViewProfile() {
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                     ) : (
-                      <p className="text-lg text-gray-900">{user?.email}</p>
+                      <p className="text-lg text-gray-900">{profileData?.email}</p>
                     )}
                   </div>
                 </div>
@@ -245,7 +273,7 @@ export function ViewProfile() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">First Name</p>
-                    <p className="text-lg text-gray-900">{user?.firstName}</p>
+                    <p className="text-lg text-gray-900">{profileData?.firstName}</p>
                   </div>
                 </div>
 
@@ -255,7 +283,7 @@ export function ViewProfile() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">Last Name</p>
-                    <p className="text-lg text-gray-900">{user?.lastName}</p>
+                    <p className="text-lg text-gray-900">{profileData?.lastName}</p>
                   </div>
                 </div>
 
@@ -265,7 +293,7 @@ export function ViewProfile() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">Role</p>
-                    <p className="text-lg text-gray-900 capitalize">{user?.role || 'USER'}</p>
+                    <p className="text-lg text-gray-900 capitalize">{profileData?.role || 'USER'}</p>
                   </div>
                 </div>
 
@@ -276,7 +304,7 @@ export function ViewProfile() {
                   <div className="flex-1">
                     <p className="text-sm text-gray-600">Account Status</p>
                     <p className="text-lg text-gray-900">
-                      {user?.isActive ? 'Active' : 'Inactive'}
+                      {profileData?.isActive ? 'Active' : 'Inactive'}
                     </p>
                   </div>
                 </div>
@@ -295,8 +323,8 @@ export function ViewProfile() {
                   <button
                     onClick={() => {
                       setIsEditing(false);
-                      setEditUsername(user?.username || '');
-                      setEditEmail(user?.email || '');
+                      setEditUsername(profileData?.username || '');
+                      setEditEmail(profileData?.email || '');
                       setNewPassword('');
                       setConfirmPassword('');
                       setError('');
@@ -316,17 +344,17 @@ export function ViewProfile() {
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-4 h-4 text-gray-400" />
                     <span className="text-gray-600">Created:</span>
-                    <span className="text-gray-900">{formatDate(user?.createdAt)}</span>
+                    <span className="text-gray-900">{formatDate(profileData?.createdAt)}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="w-4 h-4 text-gray-400" />
                     <span className="text-gray-600">Last Updated:</span>
-                    <span className="text-gray-900">{formatDate(user?.updatedAt)}</span>
+                    <span className="text-gray-900">{formatDate(profileData?.updatedAt)}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Clock className="w-4 h-4 text-gray-400" />
                     <span className="text-gray-600">Last Login:</span>
-                    <span className="text-gray-900">{formatDate(user?.lastLogin)}</span>
+                    <span className="text-gray-900">{formatDate(profileData?.lastLogin)}</span>
                   </div>
                 </div>
               </div>
