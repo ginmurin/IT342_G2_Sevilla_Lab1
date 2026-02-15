@@ -212,9 +212,6 @@ export function ViewProfile() {
                 {isEditing && (
                   <>
                     <div className="flex items-start space-x-4">
-                      <div className="bg-orange-50 rounded-full p-3">
-                        <Lock className="w-6 h-6 text-orange-600" />
-                      </div>
                       <div className="flex-1">
                         <p className="text-sm text-gray-600">New Password (optional)</p>
                         <input
@@ -228,9 +225,6 @@ export function ViewProfile() {
                     </div>
 
                     <div className="flex items-start space-x-4">
-                      <div className="bg-red-50 rounded-full p-3">
-                        <Lock className="w-6 h-6 text-red-600" />
-                      </div>
                       <div className="flex-1">
                         <p className="text-sm text-gray-600">Confirm Password</p>
                         <input
