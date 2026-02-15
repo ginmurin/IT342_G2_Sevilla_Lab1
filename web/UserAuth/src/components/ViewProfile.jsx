@@ -19,13 +19,15 @@ export function ViewProfile() {
   // Fetch complete profile data with timestamps on mount
   useEffect(() => {
     const fetchProfileData = async () => {
-      if (!user?.userId) return;
+      const sessionToken = localStorage.getItem('sessionToken');
+      const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+      
+      if (!storedUser?.userId || !sessionToken) return;
       
       try {
         const API_URL = `http://${window.location.hostname}:8080/api`;
-        const sessionToken = localStorage.getItem('sessionToken');
         
-        const response = await fetch(`${API_URL}/user/profile/${user.userId}`, {
+        const response = await fetch(`${API_URL}/user/profile/${storedUser.userId}`, {
           headers: {
             'Authorization': `Bearer ${sessionToken}`
           }
@@ -41,7 +43,7 @@ export function ViewProfile() {
     };
     
     fetchProfileData();
-  }, [user?.userId]);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -97,14 +99,12 @@ export function ViewProfile() {
       });
 
       if (response.ok) {
+        const updatedData = await response.json();
+        setProfileData(updatedData);
         setSuccess('Profile updated successfully!');
         setNewPassword('');
         setConfirmPassword('');
         setIsEditing(false);
-        // Refresh user data after 2 seconds
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
       } else {
         setError('Failed to update profile. Please try again.');
       }

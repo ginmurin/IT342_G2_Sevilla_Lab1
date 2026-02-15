@@ -113,19 +113,12 @@ export function Login() {
           </button>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-3">
+            <p className="text-sm text-gray-600">
               Don't have an account?{' '}
               <Link to="/register" className="text-blue-600 hover:text-blue-500">
                 Register
               </Link>
             </p>
-            
-            <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500 mb-2">Demo credentials:</p>
-              <p className="text-xs text-gray-600">
-                demouser / demo123
-              </p>
-            </div>
           </div>
         </form>
       </div>
