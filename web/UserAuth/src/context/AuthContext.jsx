@@ -74,7 +74,10 @@ export function AuthProvider({ children }) {
           username: data.username,
           email: data.email,
           firstName: data.firstName,
-          lastName: data.lastName
+          lastName: data.lastName,
+          createdAt: data.createdAt,
+          updatedAt: data.updatedAt,
+          lastLogin: data.lastLogin
         };
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));

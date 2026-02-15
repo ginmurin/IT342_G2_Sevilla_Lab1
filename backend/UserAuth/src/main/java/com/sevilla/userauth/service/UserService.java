@@ -83,10 +83,14 @@ public class UserService {
         return new LoginResponse(
                 true,
                 sessionToken,
+                user.getUserId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getFirstName(),
-                user.getLastName()
+                user.getLastName(),
+                user.getCreatedAt(),
+                user.getUpdatedAt(),
+                user.getLastLogin()
         );
     }
 
