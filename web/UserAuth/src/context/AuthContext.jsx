@@ -24,22 +24,19 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const register = async (email, password, name) => {
+  const register = async (email, password, fullName, username, firstName, lastName) => {
     try {
       setError(null);
-      const [firstName, lastName] = name.includes(' ') 
-        ? name.split(' ', 2) 
-        : [name, ''];
       
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: email.split('@')[0],
+          username: username || email.split('@')[0],
           email,
           password,
-          firstName,
-          lastName: lastName || 'User'
+          firstName: firstName || fullName.split(' ')[0],
+          lastName: lastName || (fullName.includes(' ') ? fullName.split(' ')[1] : 'User')
         })
       });
 

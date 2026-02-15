@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { XCircle, ArrowLeft, Loader } from 'lucide-react';
 
 export function Login() {
-  const [email, setEmail] = useState('');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,77 +16,118 @@ export function Login() {
     setError('');
     setLoading(true);
 
-    if (!email || !password) {
-      setError('Email and password are required');
+    // Validate credentials
+    if (!usernameOrEmail || !password) {
+      setError('Username/Email and password are required');
       setLoading(false);
       return;
     }
 
-    const success = await login(email, password);
-
-    if (success) {
-      navigate('/dashboard');
-    } else {
-      setError('Invalid email or password');
+    // Attempt login
+    try {
+      const success = await login(usernameOrEmail, password);
+      
+      if (success) {
+        // Login successful - redirect to dashboard
+        navigate('/dashboard');
+      } else {
+        // Invalid credentials
+        setError('Invalid username/email or password. Please try again.');
+      }
+    } catch (err) {
+      setError('An error occurred during login. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 px-4 py-12">
-      <div className="mx-auto w-full max-w-xl rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
-        <Link to="/" className="inline-flex items-center gap-2 text-base text-slate-600 hover:text-slate-900">
-          <ArrowLeft className="h-4 w-4" />
-          Back to Home
-        </Link>
-
-        <h1 className="mt-6 text-center text-4xl font-medium text-slate-900">Login</h1>
-        <p className="mt-2 text-center text-base text-slate-600">Sign in to your account</p>
-
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-          <div>
-            <label htmlFor="email" className="block text-base font-medium text-slate-700">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              disabled={loading}
-              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-base font-medium text-slate-700">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="........"
-              disabled={loading}
-              className="mt-2 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-slate-100"
-            />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow">
+        <div>
+          <Link
+            to="/"
+            className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-4"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1" />
+            Back to Home
+          </Link>
+          <h2 className="text-center text-3xl">Login</h2>
+          <p className="mt-2 text-center text-gray-600">
+            Sign in to your account
+          </p>
+        </div>
+        
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="usernameOrEmail" className="block text-sm text-gray-700">
+                Username or Email
+              </label>
+              <input
+                id="usernameOrEmail"
+                type="text"
+                value={usernameOrEmail}
+                onChange={(e) => setUsernameOrEmail(e.target.value)}
+                disabled={loading}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:cursor-not-allowed"
+                placeholder="username or email@example.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-sm text-gray-700">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50 disabled:cursor-not-allowed"
+                placeholder="••••••••"
+              />
+            </div>
           </div>
 
           {error && (
-            <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-base text-rose-700">{error}</div>
+            <div className="bg-red-50 border border-red-200 rounded-md p-4 flex items-start">
+              <XCircle className="w-5 h-5 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
+              <p className="text-red-800">{error}</p>
+            </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-blue-600 px-4 py-3 text-lg font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+            className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? (
+              <>
+                <Loader className="w-4 h-4 mr-2 animate-spin" />
+                Signing in...
+              </>
+            ) : (
+              'Sign in'
+            )}
           </button>
-        </form>
 
-        <p className="mt-6 text-center text-base text-slate-600">
-          Don&apos;t have an account?{' '}
-          <Link to="/register" className="font-medium text-blue-600 hover:text-blue-700">Register</Link>
-        </p>
+          <div className="text-center">
+            <p className="text-sm text-gray-600 mb-3">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-blue-600 hover:text-blue-500">
+                Register
+              </Link>
+            </p>
+            
+            <div className="pt-4 border-t border-gray-200">
+              <p className="text-xs text-gray-500 mb-2">Demo credentials:</p>
+              <p className="text-xs text-gray-600">
+                demouser / demo123
+              </p>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
