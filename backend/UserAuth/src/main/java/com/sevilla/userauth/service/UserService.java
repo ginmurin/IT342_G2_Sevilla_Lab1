@@ -145,8 +145,21 @@ public class UserService {
         }
 
         User user = userOpt.get();
-        user.setFirstName(profileDTO.firstName());
-        user.setLastName(profileDTO.lastName());
+        
+        // Update all fields if provided
+        if (profileDTO.username() != null && !profileDTO.username().isEmpty()) {
+            user.setUsername(profileDTO.username());
+        }
+        if (profileDTO.email() != null && !profileDTO.email().isEmpty()) {
+            user.setEmail(profileDTO.email());
+        }
+        if (profileDTO.firstName() != null && !profileDTO.firstName().isEmpty()) {
+            user.setFirstName(profileDTO.firstName());
+        }
+        if (profileDTO.lastName() != null && !profileDTO.lastName().isEmpty()) {
+            user.setLastName(profileDTO.lastName());
+        }
+        
         user.setUpdatedAt(LocalDateTime.now());
 
         return userRepository.save(user);

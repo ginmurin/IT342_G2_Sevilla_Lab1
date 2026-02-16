@@ -50,18 +50,6 @@ export function Home() {
             </p>
           </Link>
         </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 mb-2">Demo Account Credentials:</p>
-          <div className="inline-block bg-white rounded-lg shadow px-6 py-3">
-            <p className="text-sm">
-              <span className="font-medium">Username:</span> demouser
-            </p>
-            <p className="text-sm">
-              <span className="font-medium">Password:</span> demo123
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

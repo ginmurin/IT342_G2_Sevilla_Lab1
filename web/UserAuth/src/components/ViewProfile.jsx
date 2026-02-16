@@ -86,6 +86,8 @@ export function ViewProfile() {
       const payload = {
         username: editUsername,
         email: editEmail,
+        firstName: profileData?.firstName,
+        lastName: profileData?.lastName,
         ...(newPassword && { password: newPassword })
       };
 
