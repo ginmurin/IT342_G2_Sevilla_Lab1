@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Back to Home"
+            android:textColor="#1976D2"
+            android:textSize="14sp"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create your account"
+            android:textSize="16sp"
+            android:textColor="#666"
+            android:gravity="center"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Username Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username *"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="johndoe"
+            android:inputType="text"
+            android:padding="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="14sp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="At least 3 characters, letters, numbers, and underscores only"
+            android:textSize="11sp"
+            android:textColor="#999"
+            android:layout_marginBottom="15dp" />
+
+        <!-- Email Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email *"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="you@example.com"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- First Name Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name *"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="John"
+            android:inputType="text"
+            android:padding="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Last Name Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name *"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputLastName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Doe"
+            android:inputType="text"
+            android:padding="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Password Field -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password *"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="••••••••"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="14sp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Must be at least 6 characters"
+            android:textSize="11sp"
+            android:textColor="#999"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/btnRegisterSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Register"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:background="@drawable/rounded_button"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Login Link -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account? "
+                android:textSize="14sp"
+                android:textColor="#666" />
+
+            <Button
+                android:id="@+id/btnLoginLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textSize="14sp"
+                android:textColor="#1976D2"
+                android:textStyle="bold"
+                android:background="?attr/selectableItemBackground" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
