@@ -159,6 +159,13 @@ public class UserService {
         if (profileDTO.lastName() != null && !profileDTO.lastName().isEmpty()) {
             user.setLastName(profileDTO.lastName());
         }
+        if (profileDTO.password() != null && !profileDTO.password().isEmpty()) {
+            // Validate password length
+            if (profileDTO.password().length() < 6) {
+                throw new RuntimeException("Password must be at least 6 characters");
+            }
+            user.setPasswordHash(passwordEncoder.encode(profileDTO.password()));
+        }
         
         user.setUpdatedAt(LocalDateTime.now());
 
@@ -205,7 +212,8 @@ public class UserService {
                 user.getIsActive(),
                 user.getCreatedAt(),
                 user.getUpdatedAt(),
-                user.getLastLogin()
+                user.getLastLogin(),
+                null
         );
     }
 

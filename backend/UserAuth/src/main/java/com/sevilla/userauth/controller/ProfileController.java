@@ -81,7 +81,8 @@ public class ProfileController {
                     updatedUser.getIsActive(),
                     updatedUser.getCreatedAt(),
                     updatedUser.getUpdatedAt(),
-                    updatedUser.getLastLogin()
+                    updatedUser.getLastLogin(),
+                    null
             );
             
             return ResponseEntity.ok(updatedProfile);

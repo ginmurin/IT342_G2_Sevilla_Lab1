@@ -12,5 +12,6 @@ public record UserProfileDTO(
     Boolean isActive,
     LocalDateTime createdAt,
     LocalDateTime updatedAt,
-    LocalDateTime lastLogin
+    LocalDateTime lastLogin,
+    String password
 ) {}
