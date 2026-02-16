@@ -106,16 +106,8 @@ public class UserService {
             return false;
         }
         
-        // Remove session
+        // Remove session token (logout only invalidates the session, doesn't deactivate the account)
         sessions.remove(sessionToken);
-        
-        // Set user as inactive
-        Optional<User> userOpt = userRepository.findById(sessionInfo.userId());
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
-            user.setIsActive(false);
-            userRepository.save(user);
-        }
         
         return true;
     }
