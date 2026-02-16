@@ -147,46 +147,4 @@
 
     </LinearLayout>
 
-    <!-- Demo Credentials -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Demo Account Credentials:"
-            android:textSize="12sp"
-            android:textColor="#333"
-            android:gravity="center"
-            android:layout_marginBottom="5dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_card"
-            android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username: demouser"
-                android:textSize="11sp"
-                android:textColor="#000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password: demo123"
-                android:textSize="11sp"
-                android:textColor="#000" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
 </LinearLayout>
