@@ -89,7 +89,7 @@ class RegisterActivity : AppCompatActivity() {
                         // Save session
                         sessionManager.saveSession(
                             sessionToken = registerResponse.sessionToken ?: "",
-                            userId = registerResponse.userId ?: "",
+                            userId = registerResponse.userId?.toString() ?: "",
                             username = registerResponse.username ?: "",
                             email = registerResponse.email ?: "",
                             firstName = registerResponse.firstName ?: "",
@@ -107,7 +107,8 @@ class RegisterActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@RegisterActivity, registerResponse.message, Toast.LENGTH_SHORT).show()
+                        val errorMsg = if (registerResponse.message.isNullOrEmpty()) "Registration failed" else registerResponse.message
+                        Toast.makeText(this@RegisterActivity, errorMsg, Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()

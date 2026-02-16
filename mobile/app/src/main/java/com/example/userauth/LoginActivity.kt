@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                         // Save session
                         sessionManager.saveSession(
                             sessionToken = loginResponse.sessionToken ?: "",
-                            userId = loginResponse.userId ?: "",
+                            userId = loginResponse.userId?.toString() ?: "",
                             username = loginResponse.username ?: "",
                             email = loginResponse.email ?: "",
                             firstName = loginResponse.firstName ?: "",
@@ -87,7 +87,8 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@LoginActivity, loginResponse.message, Toast.LENGTH_SHORT).show()
+                        val errorMsg = if (loginResponse.message.isNullOrEmpty()) "Login failed" else loginResponse.message
+                        Toast.makeText(this@LoginActivity, errorMsg, Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()

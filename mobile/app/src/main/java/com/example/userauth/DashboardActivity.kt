@@ -3,6 +3,7 @@ package com.example.userauth
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +17,10 @@ import retrofit2.Response
 class DashboardActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var tvWelcome: TextView
-    private lateinit var tvUserInfo: TextView
+    private lateinit var tvRoleValue: TextView
     private lateinit var tvStatus: TextView
+    private lateinit var cardViewProfile: LinearLayout
+    private lateinit var btnViewProfile: Button
     private lateinit var btnLogout: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,23 +36,37 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         tvWelcome = findViewById(R.id.tvWelcome)
-        tvUserInfo = findViewById(R.id.tvUserInfo)
+        tvRoleValue = findViewById(R.id.tvRoleValue)
         tvStatus = findViewById(R.id.tvStatus)
+        cardViewProfile = findViewById(R.id.cardViewProfile)
+        btnViewProfile = findViewById(R.id.btnViewProfile)
         btnLogout = findViewById(R.id.btnLogout)
 
         // Display welcome message
         val firstName = sessionManager.getFirstName() ?: ""
         val lastName = sessionManager.getLastName() ?: ""
-        tvWelcome.text = "Welcome back, $firstName $lastName!"
+        val fullName = "$firstName $lastName".trim()
+        tvWelcome.text = if (fullName.isNotEmpty()) "Welcome back, $fullName!" else "Welcome back!"
 
         // Display user info
         val username = sessionManager.getUsername() ?: ""
-        val email = sessionManager.getEmail() ?: ""
-        val role = sessionManager.getRole() ?: ""
-        tvUserInfo.text = "@$username • $role\nEmail: $email"
+        val role = sessionManager.getRole() ?: "User"
+        
+        // Update role in stats card
+        tvRoleValue.text = role.replaceFirstChar { it.uppercase() }
 
-        // Display status
-        tvStatus.text = "Active\nUser\n100%"
+        // Display status with checkmarks
+        tvStatus.text = "✓ Your session is active and secure\n✓ All systems operational\n✓ Logged in as $username"
+cardViewProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        
+        btnViewProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogout.setOnClickListener {
             performLogout()
