@@ -3,66 +3,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#F5F5F5">
+    android:background="#F9FAFB">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Top Header -->
+        <!-- Top Navigation Bar (matches web's bg-white shadow nav) -->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:background="#FFFFFF"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
             android:elevation="4dp">
 
-            <TextView
-                android:id="@+id/tvHeaderTitle"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📊  Dashboard"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#333"
-                android:layout_centerVertical="true" />
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_menu"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Dashboard icon" />
+
+                <TextView
+                    android:id="@+id/tvHeaderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dashboard"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
 
                 <Button
                     android:id="@+id/btnViewProfile"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="View Profile"
-                    android:textSize="12sp"
-                    android:textColor="#1976D2"
+                    android:layout_height="36dp"
+                    android:text="Profile"
+                    android:textSize="13sp"
+                    android:textColor="#374151"
                     android:background="?attr/selectableItemBackground"
-                    android:layout_marginEnd="8dp"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp" />
+                    android:layout_marginEnd="4dp"
+                    android:paddingHorizontal="12dp"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp" />
 
                 <Button
                     android:id="@+id/btnLogout"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="36dp"
                     android:text="Logout"
                     android:textSize="13sp"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/rounded_button_logout"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp" />
+                    android:paddingHorizontal="16dp"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp" />
 
             </LinearLayout>
 
         </RelativeLayout>
 
-        <!-- Welcome Card -->
+        <!-- Welcome Card (matches web's bg-white rounded-lg shadow) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,28 +88,35 @@
             android:background="@drawable/rounded_card"
             android:padding="24dp"
             android:layout_margin="16dp"
-            android:elevation="3dp">
+            android:elevation="4dp">
 
             <TextView
                 android:id="@+id/tvWelcome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Welcome back!"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#1976D2" />
+                android:textColor="#111827"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvWelcomeSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is your dashboard. Navigate using the menu above."
+                android:textSize="14sp"
+                android:textColor="#4B5563" />
 
         </LinearLayout>
 
-        <!-- Quick Action Cards -->
+        <!-- Quick Action Cards (3-column grid matching web's md:grid-cols-3) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:weightSum="3">
+            android:paddingHorizontal="12dp"
+            android:layout_marginBottom="16dp">
 
             <!-- View Profile Card -->
             <LinearLayout
@@ -100,11 +125,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
                 android:background="@drawable/rounded_card"
                 android:padding="16dp"
                 android:layout_margin="4dp"
-                android:elevation="2dp"
+                android:elevation="4dp"
                 android:clickable="true"
                 android:focusable="true">
 
@@ -112,26 +136,60 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/ic_user"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="12dp"
                     android:contentDescription="View Profile Icon" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View Profile"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#1976D2"
-                    android:gravity="center"
+                    android:textColor="#111827"
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View and manage your profile information"
-                    android:textSize="10sp"
-                    android:textColor="#666"
-                    android:gravity="center" />
+                    android:textSize="11sp"
+                    android:textColor="#4B5563" />
+
+            </LinearLayout>
+
+            <!-- Protected Pages Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_card"
+                android:padding="16dp"
+                android:layout_margin="4dp"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_shield"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="Protected Pages Icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Protected Pages"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Access secure content for authenticated users"
+                    android:textSize="11sp"
+                    android:textColor="#4B5563" />
 
             </LinearLayout>
 
@@ -141,185 +199,145 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:gravity="center"
                 android:background="@drawable/rounded_card"
                 android:padding="16dp"
                 android:layout_margin="4dp"
-                android:elevation="2dp">
+                android:elevation="4dp">
 
-                <TextView
+                <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="📊"
-                    android:textSize="30sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp" />
+                    android:src="@drawable/ic_menu"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="Dashboard Icon" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Dashboard"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="#9C27B0"
-                    android:gravity="center"
+                    android:textColor="#111827"
                     android:layout_marginBottom="4dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Your central hub for all activities"
-                    android:textSize="10sp"
-                    android:textColor="#666"
-                    android:gravity="center" />
+                    android:textSize="11sp"
+                    android:textColor="#4B5563" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Quick Stats Section -->
+        <!-- Quick Stats Panel (matches web's bg-blue-50 border-blue-200 rounded-lg) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account Information"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#333"
-                android:layout_marginBottom="12dp" />
-
-        </LinearLayout>
-
-        <!-- Stats Grid -->
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:rowCount="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_stats_panel"
+            android:padding="20dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp">
 
-            <!-- Account Status -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quick Stats"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1E3A5F"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 3-column stats row -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/rounded_card"
-                android:layout_margin="4dp"
-                android:padding="12dp"
-                android:elevation="2dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_check"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="Status icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Account Status -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Active"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#00897B"
-                    android:layout_marginBottom="4dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Active"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563EB"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Account Status"
+                        android:textSize="12sp"
+                        android:textColor="#1E40AF" />
+
+                </LinearLayout>
+
+                <!-- User Role -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Status"
-                    android:textSize="11sp"
-                    android:textColor="#999" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvRoleValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="USER"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563EB"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Role"
+                        android:textSize="12sp"
+                        android:textColor="#1E40AF" />
+
+                </LinearLayout>
+
+                <!-- Access Level -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="75%"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#2563EB"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Access Level"
+                        android:textSize="12sp"
+                        android:textColor="#1E40AF" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <!-- User Role -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/rounded_card"
-                android:layout_margin="4dp"
-                android:padding="12dp"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_user"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="Role icon" />
-
-                <TextView
-                    android:id="@+id/tvRoleValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#1976D2"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Role"
-                    android:textSize="11sp"
-                    android:textColor="#999" />
-
-            </LinearLayout>
-
-            <!-- Access Level -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_columnWeight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/rounded_card"
-                android:layout_margin="4dp"
-                android:padding="12dp"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_shield"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="Access icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Full"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#F57C00"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Access"
-                    android:textSize="11sp"
-                    android:textColor="#999" />
-
-            </LinearLayout>
-
-        </GridLayout>
+        </LinearLayout>
 
         <!-- Session Info Card -->
         <LinearLayout
@@ -328,16 +346,17 @@
             android:orientation="vertical"
             android:background="@drawable/rounded_card"
             android:padding="20dp"
-            android:layout_margin="16dp"
-            android:elevation="2dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Session Information"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#333"
+                android:textColor="#111827"
                 android:layout_marginBottom="12dp" />
 
             <TextView
@@ -346,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:text="✓ Your session is active and secure\n✓ All systems operational"
                 android:textSize="14sp"
-                android:textColor="#666"
+                android:textColor="#4B5563"
                 android:lineSpacingExtra="6dp" />
 
         </LinearLayout>

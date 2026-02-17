@@ -2,201 +2,254 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:fillViewport="true"
+    android:background="#F9FAFB">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:gravity="center_horizontal"
+        android:padding="20dp">
 
-        <!-- Back Button -->
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Back to Home"
-            android:textColor="#1976D2"
-            android:textSize="14sp"
-            android:background="?attr/selectableItemBackground"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Title -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:gravity="center"
-            android:layout_marginBottom="10dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create your account"
-            android:textSize="16sp"
-            android:textColor="#666"
-            android:gravity="center"
-            android:layout_marginBottom="30dp" />
-
-        <!-- Username Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username *"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/inputUsername"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="johndoe"
-            android:inputType="text"
-            android:padding="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textSize="14sp"
-            android:layout_marginBottom="3dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="At least 3 characters, letters, numbers, and underscores only"
-            android:textSize="11sp"
-            android:textColor="#999"
-            android:layout_marginBottom="15dp" />
-
-        <!-- Email Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email *"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:layout_marginBottom="8dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/inputEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="you@example.com"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textSize="14sp"
-            android:layout_marginBottom="20dp" />
-
-        <!-- First Name Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="First Name *"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:layout_marginBottom="8dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/inputFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="John"
-            android:inputType="text"
-            android:padding="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textSize="14sp"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Last Name Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Last Name *"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:layout_marginBottom="8dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/inputLastName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Doe"
-            android:inputType="text"
-            android:padding="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textSize="14sp"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Password Field -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Password *"
-            android:textSize="14sp"
-            android:textColor="#333"
-            android:layout_marginBottom="5dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/inputPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="••••••••"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:background="@drawable/rounded_edittext"
-            android:textSize="14sp"
-            android:layout_marginBottom="3dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Must be at least 6 characters"
-            android:textSize="11sp"
-            android:textColor="#999"
-            android:layout_marginBottom="30dp" />
-
-        <!-- Register Button -->
-        <Button
-            android:id="@+id/btnRegisterSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Register"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:background="@drawable/rounded_button"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Login Link -->
+        <!-- White Card Container -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:background="@drawable/rounded_card"
+            android:elevation="4dp"
+            android:padding="28dp"
+            android:layout_marginTop="16dp">
+
+            <!-- Back Button -->
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Back to Home"
+                android:textColor="#4B5563"
+                android:textSize="14sp"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginBottom="16dp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingVertical="4dp" />
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#111827"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? "
-                android:textSize="14sp"
-                android:textColor="#666" />
+                android:text="Create your account"
+                android:textSize="15sp"
+                android:textColor="#4B5563"
+                android:gravity="center"
+                android:layout_marginBottom="28dp" />
 
-            <Button
-                android:id="@+id/btnLoginLink"
-                android:layout_width="wrap_content"
+            <!-- Username Field -->
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Username *"
                 android:textSize="14sp"
-                android:textColor="#1976D2"
+                android:textColor="#374151"
+                android:layout_marginBottom="4dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/inputUsername"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="johndoe"
+                android:inputType="text"
+                android:padding="14dp"
+                android:background="@drawable/rounded_edittext"
+                android:textSize="14sp"
+                android:textColor="#111827"
+                android:textColorHint="#9CA3AF"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="At least 3 characters, letters, numbers, and underscores only"
+                android:textSize="11sp"
+                android:textColor="#6B7280"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Email Field -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email *"
+                android:textSize="14sp"
+                android:textColor="#374151"
+                android:layout_marginBottom="6dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="you@example.com"
+                android:inputType="textEmailAddress"
+                android:padding="14dp"
+                android:background="@drawable/rounded_edittext"
+                android:textSize="14sp"
+                android:textColor="#111827"
+                android:textColorHint="#9CA3AF"
+                android:layout_marginBottom="16dp" />
+
+            <!-- First Name & Last Name (side by side like web's grid-cols-2) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="First Name *"
+                        android:textSize="14sp"
+                        android:textColor="#374151"
+                        android:layout_marginBottom="6dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="John"
+                        android:inputType="text"
+                        android:padding="14dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:textSize="14sp"
+                        android:textColor="#111827"
+                        android:textColorHint="#9CA3AF" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Last Name *"
+                        android:textSize="14sp"
+                        android:textColor="#374151"
+                        android:layout_marginBottom="6dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/inputLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="Doe"
+                        android:inputType="text"
+                        android:padding="14dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:textSize="14sp"
+                        android:textColor="#111827"
+                        android:textColorHint="#9CA3AF" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Password Field -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password *"
+                android:textSize="14sp"
+                android:textColor="#374151"
+                android:layout_marginBottom="4dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="••••••••"
+                android:inputType="textPassword"
+                android:padding="14dp"
+                android:background="@drawable/rounded_edittext"
+                android:textSize="14sp"
+                android:textColor="#111827"
+                android:textColorHint="#9CA3AF"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Must be at least 6 characters"
+                android:textSize="11sp"
+                android:textColor="#6B7280"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Register Button -->
+            <Button
+                android:id="@+id/btnRegisterSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Register"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:background="?attr/selectableItemBackground" />
+                android:textColor="#fff"
+                android:background="@drawable/rounded_button"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Login Link -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account? "
+                    android:textSize="14sp"
+                    android:textColor="#4B5563" />
+
+                <Button
+                    android:id="@+id/btnLoginLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="14sp"
+                    android:textColor="#2563EB"
+                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:paddingVertical="4dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

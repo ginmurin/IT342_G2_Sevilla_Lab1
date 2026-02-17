@@ -1,140 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#E8F0FE"
-    android:gravity="center"
-    android:padding="20dp">
+    android:fillViewport="true"
+    android:background="@drawable/bg_gradient_home">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginBottom="40dp">
+        android:padding="24dp">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_user"
-            android:layout_marginBottom="20dp"
-            android:contentDescription="@string/app_name" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome Guest"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:gravity="center"
-            android:layout_marginBottom="10dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Please login or register to access the application"
-            android:textSize="14sp"
-            android:textColor="#666"
-            android:gravity="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginBottom="20dp">
-
-        <!-- Login Card -->
+        <!-- Top Section: Icon + Welcome Text -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/rounded_card"
-            android:elevation="2dp"
-            android:layout_marginBottom="15dp"
-            android:padding="20dp">
+            android:layout_marginBottom="32dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_login"
-                android:layout_marginBottom="10dp"
-                android:contentDescription="@string/login" />
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_user"
+                android:layout_marginBottom="24dp"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="18sp"
+                android:text="Welcome Guest"
+                android:textSize="32sp"
                 android:textStyle="bold"
-                android:textColor="#1976D2"
+                android:textColor="#111827"
                 android:gravity="center"
-                android:layout_marginBottom="5dp" />
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? Sign in to continue"
-                android:textSize="12sp"
-                android:textColor="#666"
+                android:text="Please login or register to access the application"
+                android:textSize="16sp"
+                android:textColor="#4B5563"
                 android:gravity="center" />
 
         </LinearLayout>
 
+        <!-- Cards Section: Side-by-side Login + Register -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <!-- Login Card -->
+            <LinearLayout
+                android:id="@+id/cardLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/rounded_card"
+                android:elevation="6dp"
+                android:padding="20dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_login"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/login" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account? Sign in to continue"
+                    android:textSize="13sp"
+                    android:textColor="#4B5563"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- Register Card -->
+            <LinearLayout
+                android:id="@+id/cardRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/rounded_card"
+                android:elevation="6dp"
+                android:padding="20dp"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_register"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/register" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New user? Create an account to get started"
+                    android:textSize="13sp"
+                    android:textColor="#4B5563"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Login"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="#fff"
             android:background="@drawable/rounded_button"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Register Card -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/rounded_card"
-            android:elevation="2dp"
-            android:layout_marginBottom="15dp"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_register"
-                android:layout_marginBottom="10dp"
-                android:contentDescription="@string/register" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Register"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#00897B"
-                android:gravity="center"
-                android:layout_marginBottom="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="New user? Create an account to get started"
-                android:textSize="12sp"
-                android:textColor="#666"
-                android:gravity="center" />
-
-        </LinearLayout>
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btnRegister"
@@ -142,9 +159,10 @@
             android:layout_height="50dp"
             android:text="Register"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:textColor="#fff"
             android:background="@drawable/rounded_button_green" />
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
